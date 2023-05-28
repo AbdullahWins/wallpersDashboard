@@ -26,30 +26,6 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, profile);
   };
 
-  // fetch user data from firebase
-  const fetchUserFromDb = async (loggedInUser) => {
-    setLoading(true);
-    if (loggedInUser) {
-      try {
-        const ref = doc(firebaseFirestore, "userDetails", loggedInUser?.uid);
-        const docSnap = await getDoc(ref);
-        if (docSnap.exists()) {
-          const newUser = docSnap.data();
-          setUserType(newUser?.user_type);
-          setDbUser(newUser);
-        }
-        //bypassing user
-        else {
-          setUserType("Admin");
-          setDbUser(user);
-          console.log("No such doCUMent!");
-        }
-      } catch (error) {
-        console.error("Error fetching doCUMent!", error);
-      }
-    }
-  };
-
   //login via third party providers
   const providerLogin = (provider) => {
     setLoading(true);
@@ -78,6 +54,34 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+
+      // fetch user data from firebase
+      const fetchUserFromDb = async (loggedInUser) => {
+        setLoading(true);
+        if (loggedInUser) {
+          try {
+            const ref = doc(
+              firebaseFirestore,
+              "userDetails",
+              loggedInUser?.uid
+            );
+            const docSnap = await getDoc(ref);
+            if (docSnap.exists()) {
+              const newUser = docSnap.data();
+              setUserType(newUser?.user_type);
+              setDbUser(newUser);
+            }
+            //bypassing user
+            else {
+              setUserType("Admin");
+              setDbUser(user);
+              console.log("No such doCUMent!");
+            }
+          } catch (error) {
+            console.error("Error fetching doCUMent!", error);
+          }
+        }
+      };
       fetchUserFromDb(currentUser);
       setLoading(false);
     });
@@ -85,7 +89,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [user]);
 
   //exports
   const authInfo = {

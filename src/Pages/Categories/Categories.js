@@ -1,27 +1,27 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
 import { CustomerContext } from "../../Contexts/CustomerContext/CustomerProvider";
 import { Link } from "react-router-dom";
 import CategoriesTable from "../../Components/Tables/Categories/CategoriesTable";
 
-import db from "../../Assets/json/db.json"
+import db from "../../Assets/json/db.json";
 
 const Categories = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [approvedCustomers, setApprovedCustomers] = useState([]);
+  // const [approvedCustomers, setApprovedCustomers] = useState([]);
 
-  const {categories:dbCategories} = db || {};
-  const [Categories ,setCategories] = useState(dbCategories);
+  const { categories: dbCategories } = db || {};
+  const [Categories, setCategories] = useState(dbCategories);
 
   const {
     isLoading,
-    fetchCustomers,
+    // fetchCustomers,
     searchBarValue,
-    filteredCustomersBySearch,
-    filterCustomersBySearch,
+    // filteredCustomersBySearch,
+    // filterCustomersBySearch,
     setCurrentCustomer,
     updateManyCustomerStatus,
-    setSearchBarValue
+    setSearchBarValue,
   } = useContext(CustomerContext);
 
   const handleSelectCheckbox = (category, e) => {
@@ -52,9 +52,15 @@ const Categories = () => {
   //filter categories by search value
   const filterCategoriesBySearch = (e) => {
     const searchValue = e.target.value;
-    const filterUsers = dbCategories?.filter((user)=> searchBarValue !== null ?  user?.collection_name?.toLowerCase().includes(searchValue?.toLowerCase()) : true )
-    setCategories(filterUsers)
-    setSearchBarValue(searchValue)
+    const filterUsers = dbCategories?.filter((user) =>
+      searchBarValue !== null
+        ? user?.collection_name
+            ?.toLowerCase()
+            .includes(searchValue?.toLowerCase())
+        : true
+    );
+    setCategories(filterUsers);
+    setSearchBarValue(searchValue);
   };
 
   const handleApproveAll = (category, status) => {
@@ -62,12 +68,12 @@ const Categories = () => {
     setSelectedCategories([]);
   };
 
-  useEffect(() => {
-    const filteredCustomersByStatus = filteredCustomersBySearch?.filter(
-      (category) => category?.user_status?.toLowerCase() === "active"
-    );
-    setApprovedCustomers(filteredCustomersByStatus);
-  }, [filteredCustomersBySearch]);
+  // useEffect(() => {
+  //   const filteredCustomersByStatus = filteredCustomersBySearch?.filter(
+  //     (category) => category?.user_status?.toLowerCase() === "active"
+  //   );
+  //   setApprovedCustomers(filteredCustomersByStatus);
+  // }, [filteredCustomersBySearch]);
 
   return (
     <div className="overflow-auto w-full pt-10 pb-32 pr-10">
@@ -87,7 +93,7 @@ const Categories = () => {
             placeholder="search"
           />
           <p>
-          <Link
+            <Link
               to="/categoriesAddNew"
               className="btn bg-whiteHigh hover:bg-whiteLow border-none rounded-full h-12 w-12"
             >

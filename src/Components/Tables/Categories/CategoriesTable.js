@@ -7,9 +7,9 @@ import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 const CategoriesTable = ({ rows, handleSelectCheckbox,handleSelectAllCheckbox,selectedCategories }) => {
   const {
     searchBarValue,
-    currentCustomer,
-    setCurrentCustomer,
-    clickHandlerForModals,
+    // currentCustomer,
+    // setCurrentCustomer,
+    // clickHandlerForModals,
   } = useContext(CustomerContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
