@@ -1,0 +1,110 @@
+import React from "react";
+import { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { StaffContext } from "../../Contexts/StaffContext/StaffProvider";
+
+const UserAddNew = () => {
+  const { addOneStaff } = useContext(StaffContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/staffAll";
+
+  const handleEditBtn = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const contact = form.contact.value;
+    const dob = form.dob.value;
+    const gender = form.gender.value;
+    const country = form.country.value;
+    const presentAddress = form.presentAddress.value;
+    const userType = form.userType.value;
+
+    const newStaff = {
+      user_name: name,
+      user_email: email,
+      user_contact: contact,
+      user_dob: dob,
+      user_gender: gender,
+      user_country: country,
+      user_address: presentAddress,
+      user_type: userType,
+    };
+    console.log(newStaff);
+    addOneStaff(newStaff);
+    setTimeout(() => {
+      navigate(from, { replace: true });
+    }, 1000);
+  };
+
+  return (
+    <section className="overflow-auto w-full pt-10 pb-32 pr-10 rounded-lg bg-whiteHigh">
+      <div className="flex items-center bg-primaryMain text-whiteHigh rounded-t-lg  w-full">
+        <p className="font-bold text-2xl pl-4 py-5">Users</p>
+      </div>
+      <div>
+        <section className="py-4">
+          
+          <div className="grid items-center justify-center gap-4">
+            <form className="flex flex-col gap-4" onSubmit={handleEditBtn}>
+              <div className="flex flex-col w-full items-center justify-center gap-2">
+                
+                <div className="flex items-center justify-center gap-1">
+                  <p className=" w-96 text-end">Name:</p>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="enter full name"
+                    className="input bg-whiteHigh border-1 border-whiteLow focus:outline-none w-96 text-blackHigh"
+                  />
+                </div>
+                <div className="flex items-center justify-center gap-1">
+                  <p className=" w-96 text-end">Email:</p>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="email"
+                    className="input bg-whiteHigh border-1 border-whiteLow focus:outline-none w-96 text-blackHigh"
+                  />
+                </div>
+                
+                <div className="flex items-center justify-center gap-1">
+                  <p className=" w-96 text-end">Country:</p>
+                  <input
+                    type="text"
+                    name="country"
+                    placeholder="work location"
+                    className="input bg-whiteHigh border-1 border-whiteLow focus:outline-none w-96 text-blackHigh"
+                  />
+                </div>
+                <div className="flex items-center justify-center gap-1">
+                  <p className=" w-96 text-end">Present&nbsp;Address:</p>
+                  <input
+                    type="text"
+                    name="presentAddress"
+                    placeholder="full address"
+                    className="input bg-whiteHigh border-1 border-whiteLow focus:outline-none w-96 text-blackHigh"
+                  />
+                </div>
+                
+              </div>
+              <div className="flex items-center justify-end gap-4">
+                <Link to={"/staffAll"}>
+                  <label className="btn rounded-full w-36 normal-case bg-whiteHigh text-primaryMain border-primaryMain hover:border-primaryMain hover:bg-whiteHigh">
+                    Cancel
+                  </label>
+                </Link>
+                <button className="btn submit rounded-full w-36 normal-case bg-primaryMain border-primaryMain hover:text-primaryMain hover:bg-whiteHigh hover:border-primaryMain">
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </section>
+  );
+};
+
+export default UserAddNew;
