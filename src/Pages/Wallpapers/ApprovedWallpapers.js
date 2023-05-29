@@ -21,9 +21,9 @@ const ApprovedWallpapers = () => {
   const handleSelectCheckbox = (wallpaper, e) => {
     const selectedWallpaperList = [...selectedWallpapers];
     if (e?.target?.checked) {
-      selectedWallpaperList?.push(wallpaper?.id);
+      selectedWallpaperList?.push(wallpaper?._id);
     } else {
-      const index = selectedWallpaperList?.indexOf(wallpaper?.id);
+      const index = selectedWallpaperList?.indexOf(wallpaper?._id);
       if (index !== -1) {
         selectedWallpaperList?.splice(index, 1);
       }
@@ -43,13 +43,15 @@ const ApprovedWallpapers = () => {
     const selectAllCategory = [];
     if (e?.target?.checked) {
       categories?.map((category) => {
-        return selectAllCategory?.push(category?.id);
+        return selectAllCategory?.push(category?._id);
       });
     } else {
-      setApproved([]);
+      setSelectedWallpapers([]);
     }
-    setApproved(selectAllCategory);
+    setSelectedWallpapers(selectAllCategory);
   };
+
+  console.log(selectedWallpapers);
 
   //filter categories by search value
   const filterWallpapersBySearch = (e) => {
@@ -116,7 +118,7 @@ const ApprovedWallpapers = () => {
           setCurrentCustomer={setCurrentCustomer}
           handleSelectCheckbox={handleSelectCheckbox}
           handleSelectAllCheckbox={handleSelectAllCheckbox}
-          selectedCategories={selectedWallpapers}
+          selectedItems={selectedWallpapers}
         ></TableApprovedWallpapers>
       )}
     </div>
