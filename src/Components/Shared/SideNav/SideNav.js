@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import "./SideNav.css";
 
 const SideNav = () => {
-  const [isClosed, setIsClosed] = useState();
-  const [canShow, setCanShow] = useState();
+  const [isClosed] = useState();
+  // const [canShow, setCanShow] = useState();
   const [isActive, setIsActive] = useState("dashboard");
   const [isSubmenuActive, setIsSubmenuActive] = useState();
   const [isSubmenuOpen, setIsSubmenuOpen] = useState({});
@@ -16,10 +16,10 @@ const SideNav = () => {
 
   // const navigate = useNavigate();
 
-  const toggleSideNav = () => {
-    setIsClosed(!isClosed);
-    setCanShow(!canShow);
-  };
+  // const toggleSideNav = () => {
+  //   setIsClosed(!isClosed);
+  //   setCanShow(!canShow);
+  // };
 
   const handleMenus = (menu, submenu) => {
     setIsActive(menu);
@@ -578,11 +578,11 @@ const SideNav = () => {
           </button>
         </div>
       </section>
-      <div className="pl-6">
+      {/* <div className="pl-6">
         <button onClick={toggleSideNav} className="btn-btn-ghost">
           <span className="material-symbols-outlined">menu_open</span>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

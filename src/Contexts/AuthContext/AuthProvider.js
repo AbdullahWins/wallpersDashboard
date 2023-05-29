@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
 
-      // fetch user data from firebase
+      // fetch user data from backend
       const fetchUserFromDb = async (loggedInUser) => {
         setLoading(true);
         if (loggedInUser) {

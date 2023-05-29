@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Contexts/AuthContext/AuthProvider";
 
-const UserProfile = () => {
+const Profile = () => {
   const { user } = useContext(AuthContext);
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center">
@@ -12,4 +12,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default Profile;
