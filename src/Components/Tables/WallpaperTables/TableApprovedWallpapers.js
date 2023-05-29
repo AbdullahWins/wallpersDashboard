@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CustomerContext } from "../../../Contexts/CustomerContext/CustomerProvider";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 import { Pagination } from "../../Pagination/Pagination";
+import { WallpaperContext } from "../../../Contexts/WallpaperContext/WallpaperContext";
 
 const TableApprovedWallpapers = ({
   items,
   handleSelectCheckbox,
   handleSelectAllCheckbox,
-  selectedCategories,
+  selectedItems,
 }) => {
-  const { searchBarValue } = useContext(CustomerContext);
+  const { searchBarValue } = useContext(WallpaperContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -88,7 +88,7 @@ const TableApprovedWallpapers = ({
                       type="checkbox"
                       className="checkbox checkbox-sm rounded-none"
                       name="checkbox"
-                      checked={selectedCategories?.includes(wallpaper?.id)}
+                      checked={selectedItems?.includes(wallpaper?._id)}
                       onChange={(e) => {
                         handleCheckbox(wallpaper, e);
                       }}
