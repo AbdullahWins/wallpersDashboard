@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CustomerContext } from "../../../Contexts/CustomerContext/CustomerProvider";
-import ConfirmationModal from "../../Modals/ConfirmationModal";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 import { Pagination } from "../../Pagination/Pagination";
 
@@ -159,8 +158,8 @@ const TableApprovedWallpapers = ({
           totalRows={items?.length}
         ></Pagination>
       </div>
-      <ConfirmationModal actionName="delete" />
-      {/* <CategoriesConfirmationBlockPopup
+      {/* <ConfirmationModal actionName="delete" />
+      <CategoriesConfirmationBlockPopup
         currentCustomer={currentCustomer}
         clickHandlerForModals={clickHandlerForModals}
       ></CategoriesConfirmationBlockPopup> */}

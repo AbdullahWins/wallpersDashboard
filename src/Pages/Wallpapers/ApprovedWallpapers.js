@@ -1,22 +1,22 @@
 import React, { useContext, useState } from "react";
 import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
-import { CustomerContext } from "../../Contexts/CustomerContext/CustomerProvider";
 import TableApprovedWallpapers from "../../Components/Tables/WallpaperTables/TableApprovedWallpapers";
 import { WallpaperContext } from "../../Contexts/WallpaperContext/WallpaperContext";
+import { useEffect } from "react";
 
 const ApprovedWallpapers = () => {
-  const { wallpapers } = useContext(WallpaperContext);
-  const [approved, setApproved] = useState(wallpapers);
-  const [filteredApproved, setFilteredApproved] = useState(wallpapers);
-  const [selectedWallpapers, setSelectedWallpapers] = useState([]);
-
   const {
+    wallpapers,
     isLoading,
     searchBarValue,
     setCurrentCustomer,
     updateManyCustomerStatus,
     setSearchBarValue,
-  } = useContext(CustomerContext);
+  } = useContext(WallpaperContext);
+
+  const [approved, setApproved] = useState(null);
+  const [filteredApproved, setFilteredApproved] = useState(approved);
+  const [selectedWallpapers, setSelectedWallpapers] = useState([]);
 
   const handleSelectCheckbox = (wallpaper, e) => {
     const selectedWallpaperList = [...selectedWallpapers];
@@ -30,6 +30,14 @@ const ApprovedWallpapers = () => {
     }
     setSelectedWallpapers(selectedWallpaperList);
   };
+
+  useEffect(() => {
+    const approvedWallpapers = wallpapers.filter((wallpaper) =>
+      wallpaper?.status?.includes("approved")
+    );
+    setApproved(approvedWallpapers);
+    setFilteredApproved(approvedWallpapers);
+  }, [wallpapers]);
 
   const handleSelectAllCheckbox = (categories, e) => {
     const selectAllCategory = [];
