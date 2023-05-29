@@ -1,30 +1,17 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-// import avater from "../../../Assets/img/profile/avater.png";
-// import { AuthContext } from "../../../Contexts/AuthContext/AuthProvider";
 import "./SideNav.css";
 
 const SideNav = () => {
   const [isClosed] = useState();
-  // const [canShow, setCanShow] = useState();
   const [isActive, setIsActive] = useState("dashboard");
   const [isSubmenuActive, setIsSubmenuActive] = useState();
   const [isSubmenuOpen, setIsSubmenuOpen] = useState({});
   const submenuRef = useRef({});
 
-  // const { dbUser, userType } = useContext(AuthContext);
-
-  // const navigate = useNavigate();
-
-  // const toggleSideNav = () => {
-  //   setIsClosed(!isClosed);
-  //   setCanShow(!canShow);
-  // };
-
   const handleMenus = (menu, submenu) => {
     setIsActive(menu);
     setIsSubmenuActive(submenu);
-    console.log(submenu, isSubmenuOpen);
 
     if (submenu?.length === 0 && isSubmenuOpen) {
       setIsSubmenuOpen(false);
@@ -38,12 +25,6 @@ const SideNav = () => {
       }));
     }
   };
-
-  // const handleNavigation = (navRoute) => {
-  //   const navigationRoute = `/${navRoute}`;
-  //   navigate(navigationRoute, { replace });
-  //   activateMenu(navRoute);
-  // };
 
   return (
     <div
@@ -102,7 +83,7 @@ const SideNav = () => {
           >
             {/* Submenu items */}
             <Link
-              to="/snapchatFilter"
+              to="/approvedwallpapers"
               className={`py-3 pl-12 ${
                 isSubmenuActive === "Approved"
                   ? "bg-primaryMain text-whiteHigh"
@@ -113,7 +94,7 @@ const SideNav = () => {
               <p>Approved</p>
             </Link>
             <Link
-              to="/tiktokFilter"
+              to="/pendingwallpapers"
               className={`py-3 pl-12 ${
                 isSubmenuActive === "Pending"
                   ? "bg-primaryMain text-whiteHigh"
@@ -124,7 +105,7 @@ const SideNav = () => {
               <p>Pending</p>
             </Link>
             <Link
-              to="/ecardFilter"
+              to="/pausedwallpapers"
               className={`py-3 pl-12 ${
                 isSubmenuActive === "Paused"
                   ? "bg-primaryMain text-whiteHigh"
@@ -135,7 +116,7 @@ const SideNav = () => {
               <p>Paused</p>
             </Link>
             <Link
-              to="/ecardFilter"
+              to="/rejectedwallpapers"
               className={`py-3 pl-12 ${
                 isSubmenuActive === "Rejected"
                   ? "bg-primaryMain text-whiteHigh"
@@ -578,11 +559,6 @@ const SideNav = () => {
           </button>
         </div>
       </section>
-      {/* <div className="pl-6">
-        <button onClick={toggleSideNav} className="btn-btn-ghost">
-          <span className="material-symbols-outlined">menu_open</span>
-        </button>
-      </div> */}
     </div>
   );
 };

@@ -5,25 +5,20 @@ import ConfirmationModal from "../../Modals/ConfirmationModal";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 import { Pagination } from "../../Pagination/Pagination";
 
-const CategoriesTable = ({
-  rows,
+const TableApprovedWallpapers = ({
+  items,
   handleSelectCheckbox,
   handleSelectAllCheckbox,
   selectedCategories,
 }) => {
-  const {
-    searchBarValue,
-    // currentCustomer,
-    // setCurrentCustomer,
-    // clickHandlerForModals,
-  } = useContext(CustomerContext);
+  const { searchBarValue } = useContext(CustomerContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentRows = rows?.slice(indexOfFirstRow, indexOfLastRow);
+  const currentRows = items?.slice(indexOfFirstRow, indexOfLastRow);
 
   useEffect(() => {
     if (searchBarValue !== null) {
@@ -42,78 +37,88 @@ const CategoriesTable = ({
 
   return (
     <div className="relative pb-16">
-      {rows?.length > 0 ? (
+      {items?.length > 0 ? (
         <table className="table w-full">
-          <thead>
+          <thead className=" p-0">
             <tr className="font-bold text-center text-3xl">
-              <th className="bg-blueLight text-bold text-lg normal-case">
+              <th className="flex items-center justify-center bg-blueLight text-bold text-lg normal-case">
                 <input
                   type="checkbox"
-                  className="checkbox rounded-none"
+                  className="checkbox checkbox-sm rounded-none"
                   name="allCheckbox"
                   onChange={(e) => {
                     handleAllCheckbox(currentRows, e);
                   }}
                 />
               </th>
-              <th className="bg-blueLight text-bold text-lg normal-case">
-                Categories image
+              <th className="bg-blueLight text-bold text-lg normal-case p-2">
+                Serial
               </th>
               <th className="bg-blueLight text-bold text-lg normal-case">
-                Collections name
+                Preview
               </th>
               <th className="bg-blueLight text-bold text-lg normal-case">
                 Created
               </th>
-
+              <th className="bg-blueLight text-bold text-lg normal-case">
+                Title
+              </th>
+              <th className="bg-blueLight text-bold text-lg normal-case">
+                Contributor
+              </th>
+              <th className="bg-blueLight text-bold text-lg normal-case">
+                Category
+              </th>
+              <th className="bg-blueLight text-bold text-lg normal-case">
+                Color
+              </th>
+              <th className="bg-blueLight text-bold text-lg normal-case">
+                Price(Coins)
+              </th>
               <th className="bg-blueLight text-bold text-lg normal-case">
                 Actions
               </th>
             </tr>
           </thead>
           <tbody className="text-center">
-            {currentRows?.map((category, i) => {
+            {currentRows?.map((wallpaper, i) => {
               return (
                 <tr key={i} className="text-center">
-                  <th className="px-0">
+                  <th className="p-0">
                     <input
                       type="checkbox"
-                      className="checkbox rounded-none"
+                      className="checkbox checkbox-sm rounded-none"
                       name="checkbox"
-                      checked={selectedCategories?.includes(category?.id)}
+                      checked={selectedCategories?.includes(wallpaper?.id)}
                       onChange={(e) => {
-                        handleCheckbox(category, e);
+                        handleCheckbox(wallpaper, e);
                       }}
                     />
                   </th>
-                  <td className="px-0 mx-0">
+                  <td className="p-0">{wallpaper?.category_serial}</td>
+                  <td className="p-0">
                     <span className="material-symbols-outlined text-blackMid text-4xl">
-                      {category?.collection_icon}
+                      {wallpaper?.collection_icon}
                     </span>
                   </td>
-                  <td className="px-0 mx-0">{category?.collection_name}</td>
-                  <td className="px-0 mx-0">{category?.createdAt}</td>
+                  <td className="p-0">{wallpaper?.creation_date}</td>
+                  <td className="p-0">{wallpaper?.title}</td>
+                  <td className="p-0">{wallpaper?.author}</td>
+                  <td className="p-0">{wallpaper?.title}</td>
+                  <td className="p-0">{wallpaper?.color}</td>
+                  <td className="p-0">{wallpaper?.price}</td>
 
-                  <td className="px-0 mx-0">
-                    <div className="flex items-center justify-center gap-0">
-                      {/* <label
-                        htmlFor="categorysBlockPopup"
-                        onClick={() => setCurrentcategory(category)}
-                        className="btn rounded-full p-0 bg-whiteHigh text-blackMid border-none hover:bg-whiteHigh"
-                      >
-                        <span className="material-symbols-outlined p-0">
-                          block
-                        </span>
-                      </label> */}
+                  <td className="p-0">
+                    <div className="flex items-center justify-center p-0">
                       <Link
                         to={{
-                          pathname: `/categoriesEdit/${category?.id}`,
-                          category: category,
+                          pathname: `/wallpaperEdit/${wallpaper?.id}`,
+                          wallpaper: wallpaper,
                         }}
                       >
                         <label
                           htmlFor="pausePopup"
-                          className="btn rounded-full p-3 bg-whiteHigh text-alertColor border-none hover:bg-whiteHigh"
+                          className="btn rounded-full bg-whiteHigh text-alertColor border-none hover:bg-whiteHigh"
                         >
                           <span className="material-symbols-outlined">
                             border_color
@@ -143,15 +148,17 @@ const CategoriesTable = ({
       ) : (
         <EmptyScreen />
       )}
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        activeButton={activeButton}
-        setActiveButton={setActiveButton}
-        rowsPerPage={rowsPerPage}
-        setRowsPerPage={setRowsPerPage}
-        totalRows={rows?.length}
-      />
+      <div>
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          activeButton={activeButton}
+          setActiveButton={setActiveButton}
+          rowsPerPage={rowsPerPage}
+          setRowsPerPage={setRowsPerPage}
+          totalRows={items?.length}
+        ></Pagination>
+      </div>
       <ConfirmationModal actionName="delete" />
       {/* <CategoriesConfirmationBlockPopup
         currentCustomer={currentCustomer}
@@ -161,4 +168,4 @@ const CategoriesTable = ({
   );
 };
 
-export default CategoriesTable;
+export default TableApprovedWallpapers;

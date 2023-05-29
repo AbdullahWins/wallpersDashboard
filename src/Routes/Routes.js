@@ -9,6 +9,7 @@ import ApprovedWallpapers from "../Pages/Wallpapers/ApprovedWallpapers";
 import PendingWallpapers from "../Pages/Wallpapers/PendingWallpapers";
 import RejectedWallpapers from "../Pages/Wallpapers/RejectedWallpapers";
 import PausedWallpapers from "../Pages/Wallpapers/PausedWallpapers";
+import CategoriesTable from "../Components/Tables/Categories/CategoriesTable";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "/pausedwallpapers",
         element: <PausedWallpapers></PausedWallpapers>,
+      },
+      {
+        path: "/p",
+        element: <CategoriesTable></CategoriesTable>,
       },
     ],
   },

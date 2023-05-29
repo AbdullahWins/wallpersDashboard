@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
           try {
             const ref = doc(
               firebaseFirestore,
-              "userDetails",
+              "usersCollection",
               loggedInUser?.uid
             );
             const docSnap = await getDoc(ref);

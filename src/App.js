@@ -10,30 +10,33 @@ import PaymentProvider from "./Contexts/PaymentContext/PaymentProvider";
 import StaffProvider from "./Contexts/StaffContext/StaffProvider";
 import WarehouseProvider from "./Contexts/WarehouseContext/WarehouseProvider";
 import { router } from "./Routes/Routes";
+import WallpaperProvider from "./Contexts/WallpaperContext/WallpaperContext";
 
 function App() {
   const Router = router;
   return (
     <AuthProvider>
-      <OrdersProvider>
-        <DeliveryProvider>
-          <BusinessProvider>
-            <CustomerProvider>
-              <WarehouseProvider>
-                <LocationProvider>
-                  <PaymentProvider>
-                    <StaffProvider>
-                      <div className="h-screen">
-                        <RouterProvider router={Router}></RouterProvider>
-                      </div>
-                    </StaffProvider>
-                  </PaymentProvider>
-                </LocationProvider>
-              </WarehouseProvider>
-            </CustomerProvider>
-          </BusinessProvider>
-        </DeliveryProvider>
-      </OrdersProvider>
+      <WallpaperProvider>
+        <OrdersProvider>
+          <DeliveryProvider>
+            <BusinessProvider>
+              <CustomerProvider>
+                <WarehouseProvider>
+                  <LocationProvider>
+                    <PaymentProvider>
+                      <StaffProvider>
+                        <div className="h-screen">
+                          <RouterProvider router={Router}></RouterProvider>
+                        </div>
+                      </StaffProvider>
+                    </PaymentProvider>
+                  </LocationProvider>
+                </WarehouseProvider>
+              </CustomerProvider>
+            </BusinessProvider>
+          </DeliveryProvider>
+        </OrdersProvider>
+      </WallpaperProvider>
     </AuthProvider>
   );
 }
