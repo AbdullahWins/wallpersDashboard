@@ -4,12 +4,10 @@ import Login from "../Pages/Authentication/Login/Login";
 import Home from "../Pages/Home/Home";
 import Profile from "../Pages/Profile/Profile";
 import PrivateRoutes from "../Routes/PrivateRoutes";
-import Categories from "../Pages/Categories/Categories";
 import ApprovedWallpapers from "../Pages/Wallpapers/ApprovedWallpapers";
 import PendingWallpapers from "../Pages/Wallpapers/PendingWallpapers";
 import RejectedWallpapers from "../Pages/Wallpapers/RejectedWallpapers";
 import PausedWallpapers from "../Pages/Wallpapers/PausedWallpapers";
-import CategoriesTable from "../Components/Tables/Categories/CategoriesTable";
 
 export const router = createBrowserRouter([
   {
@@ -23,10 +21,6 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-      },
-      {
-        path: "/categories",
-        element: <Categories></Categories>,
       },
       {
         path: "/profile",
@@ -51,10 +45,6 @@ export const router = createBrowserRouter([
       {
         path: "/pausedwallpapers",
         element: <PausedWallpapers></PausedWallpapers>,
-      },
-      {
-        path: "/p",
-        element: <CategoriesTable></CategoriesTable>,
       },
     ],
   },
