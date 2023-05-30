@@ -84,6 +84,7 @@ const AuthProvider = ({ children }) => {
       };
       fetchUserFromDb(currentUser);
       setLoading(false);
+      
     });
 
     return () => {
