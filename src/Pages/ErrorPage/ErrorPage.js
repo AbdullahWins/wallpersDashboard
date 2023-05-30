@@ -1,12 +1,14 @@
 import React from "react";
+import { error } from "../../Assets/getImages";
+import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
   return (
     <div className="h-screen flex flex-col items-center justify-center">
-      <p>Page found but I won't show you!</p>
-      <p>because I can!</p>
-      <p>here's a 404 error for you</p>
-      <p>and a meme</p>
+      <img className="h-72" src={error} alt="" />
+      <Link to="/">
+        <span className="text-infoColor font-black">Home</span>
+      </Link>
     </div>
   );
 };
