@@ -10,6 +10,7 @@ const ApprovedWallpapers = () => {
     wallpapers,
     isLoading,
     searchBarValue,
+    setSearchBarValue,
     setCurrentCustomer,
     updateManyCustomerStatus,
   } = useContext(WallpaperContext);
@@ -32,7 +33,7 @@ const ApprovedWallpapers = () => {
   };
 
   useEffect(() => {
-    const approvedWallpapers = wallpapers.filter((wallpaper) =>
+    const approvedWallpapers = wallpapers?.filter((wallpaper) =>
       wallpaper?.status?.includes("approved")
     );
     setApproved(approvedWallpapers);
@@ -54,14 +55,17 @@ const ApprovedWallpapers = () => {
   //filter categories by search value
   const filterWallpapersBySearch = (e) => {
     const searchValue = e.target.value;
+    console.log(searchValue);
     const filterWallpapers = approved?.filter((wallpaper) =>
       searchBarValue !== null
-        ? wallpaper?.title?.toLowerCase().includes(searchValue?.toLowerCase())
+        ? wallpaper?.name?.toLowerCase().includes(searchValue?.toLowerCase())
         : true
     );
     setFilteredApproved(filterWallpapers);
+    setSearchBarValue(searchValue);
   };
 
+  //handle approve all
   const handleApproveAll = (category, status) => {
     updateManyCustomerStatus(category, status);
     setSelectedWallpapers([]);

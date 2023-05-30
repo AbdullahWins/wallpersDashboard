@@ -5,6 +5,7 @@ export const WallpaperContext = createContext();
 const WallpaperProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [wallpapers, setWallpapers] = useState(null);
+  const [searchBarValue, setSearchBarValue] = useState(null);
 
   //fetch all wallpapers on load
   useEffect(() => {
@@ -47,6 +48,8 @@ const WallpaperProvider = ({ children }) => {
     isLoading,
     setIsLoading,
     setWallpapers,
+    searchBarValue,
+    setSearchBarValue,
   };
   return (
     <WallpaperContext.Provider value={WallpapersInfo}>
