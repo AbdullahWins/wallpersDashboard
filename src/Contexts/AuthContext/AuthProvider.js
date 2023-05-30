@@ -75,10 +75,10 @@ const AuthProvider = ({ children }) => {
             else {
               setUserType("Admin");
               setDbUser(user);
-              console.log("No such doCUMent!");
+              console.log("No such user!");
             }
           } catch (error) {
-            console.error("Error fetching doCUMent!", error);
+            console.error("Error fetching user!", error);
           }
         }
       };

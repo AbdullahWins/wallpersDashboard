@@ -161,7 +161,7 @@ const SideNav = () => {
           >
             {/* Submenu items */}
             <Link
-              to="/snapchatFilter"
+              to="/approvedringtones"
               className={`py-3 pl-12 ${
                 isSubmenuActive === "Approved"
                   ? "bg-primaryMain text-whiteHigh"
@@ -172,7 +172,7 @@ const SideNav = () => {
               <p>Approved</p>
             </Link>
             <Link
-              to="/tiktokFilter"
+              to="/pendingringtones"
               className={`py-3 pl-12 ${
                 isSubmenuActive === "Pending"
                   ? "bg-primaryMain text-whiteHigh"
@@ -183,7 +183,7 @@ const SideNav = () => {
               <p>Pending</p>
             </Link>
             <Link
-              to="/ecardFilter"
+              to="/rejectedringtones"
               className={`py-3 pl-12 ${
                 isSubmenuActive === "Paused"
                   ? "bg-primaryMain text-whiteHigh"
@@ -194,7 +194,7 @@ const SideNav = () => {
               <p>Paused</p>
             </Link>
             <Link
-              to="/ecardFilter"
+              to="/pausedringtones"
               className={`py-3 pl-12 ${
                 isSubmenuActive === "Rejected"
                   ? "bg-primaryMain text-whiteHigh"
