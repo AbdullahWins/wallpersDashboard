@@ -3,12 +3,8 @@ import axios from "axios";
 export const WallpaperContext = createContext();
 
 const WallpaperProvider = ({ children }) => {
-  //   const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [wallpapers, setWallpapers] = useState(null);
-  //   const [pendingWallpapers, setPendingWallpapers] = useState(null);
-  //   const [approvedWallpapers, setApprovedWallpapers] = useState(null);
-  //   const [rejectedWallpapers, setRejectedWallpapers] = useState(null);
-  //   const [pasuedWallpapers, setPausedWallpapers] = useState(null);
 
   //fetch all wallpapers on load
   useEffect(() => {
@@ -48,10 +44,8 @@ const WallpaperProvider = ({ children }) => {
   //exports
   const WallpapersInfo = {
     wallpapers,
-    // pendingWallpapers,
-    // approvedWallpapers,
-    // rejectedWallpapers,
-    // pasuedWallpapers,
+    isLoading,
+    setIsLoading,
     setWallpapers,
   };
   return (

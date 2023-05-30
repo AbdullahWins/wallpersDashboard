@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
-import TableApprovedWallpapers from "../../Components/Tables/WallpaperTables/TableApprovedWallpapers";
 import { WallpaperContext } from "../../Contexts/WallpaperContext/WallpaperContext";
 import { useEffect } from "react";
 import SearchBar from "../../Components/SearchBar/SearchBar";
+import LoadingScreen from "../../Components/Shared/LoadingScreens/LoadingScreen";
+import WallpaperTable from "../../Components/Tables/WallpaperTables/WallpaperTable";
 
 const ApprovedWallpapers = () => {
   const {
@@ -96,15 +96,15 @@ const ApprovedWallpapers = () => {
         </button>
       </div>
       {isLoading ? (
-        <OrdersLoading></OrdersLoading>
+        <LoadingScreen></LoadingScreen>
       ) : (
-        <TableApprovedWallpapers
+        <WallpaperTable
           items={filteredApproved}
           setCurrentCustomer={setCurrentCustomer}
           handleSelectCheckbox={handleSelectCheckbox}
           handleSelectAllCheckbox={handleSelectAllCheckbox}
           selectedItems={selectedWallpapers}
-        ></TableApprovedWallpapers>
+        ></WallpaperTable>
       )}
     </div>
   );

@@ -4,7 +4,7 @@ import { Pagination } from "../../Pagination/Pagination";
 import { WallpaperContext } from "../../../Contexts/WallpaperContext/WallpaperContext";
 import DropdownMenu from "../../DropdownMenu/DropdownMenu";
 
-const TableApprovedWallpapers = ({
+const WallpaperTable = ({
   items,
   handleSelectCheckbox,
   handleSelectAllCheckbox,
@@ -26,12 +26,12 @@ const TableApprovedWallpapers = ({
     }
   }, [searchBarValue]);
 
-  const handleCheckbox = (category, e) => {
-    handleSelectCheckbox(category, e);
+  const handleCheckbox = (wallpaper, e) => {
+    handleSelectCheckbox(wallpaper, e);
   };
 
-  const handleAllCheckbox = (categories, e) => {
-    handleSelectAllCheckbox(categories, e);
+  const handleAllCheckbox = (wallpapers, e) => {
+    handleSelectAllCheckbox(wallpapers, e);
   };
 
   return (
@@ -170,4 +170,4 @@ const TableApprovedWallpapers = ({
   );
 };
 
-export default TableApprovedWallpapers;
+export default WallpaperTable;
