@@ -4,7 +4,7 @@ import Charts from "../../Components/Charts/Charts";
 import HomeTopCard from "../../Components/Cards/HomeTopCard";
 import { WallpaperContext } from "../../Contexts/WallpaperContext/WallpaperContext";
 
-const Home = () => {
+const Dashboard = () => {
   const [userType] = useState("Admin");
 
   const { wallpapers } = useContext(WallpaperContext);
@@ -48,4 +48,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Dashboard;

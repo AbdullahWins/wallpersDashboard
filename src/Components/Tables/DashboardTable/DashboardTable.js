@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { lense } from "../../../Assets/getImages";
 import { WallpaperContext } from "../../../Contexts/WallpaperContext/WallpaperContext";
 
-const HomeOrders = ({ title }) => {
+const DashboardTable = ({ title }) => {
   const { wallpapers, isLoading } = useContext(WallpaperContext);
   return (
     <section>
@@ -54,4 +54,4 @@ const HomeOrders = ({ title }) => {
   );
 };
 
-export default HomeOrders;
+export default DashboardTable;

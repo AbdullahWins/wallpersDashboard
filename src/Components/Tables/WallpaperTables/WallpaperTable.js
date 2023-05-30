@@ -105,11 +105,13 @@ const WallpaperTable = ({
                   <td className="p-0">{wallpaper?.author}</td>
                   <td className="p-0">{wallpaper?.category}</td>
                   <td className="p-0">
-                    {wallpaper?.colors.map((color) => {
-                      return <span>{color} </span>;
+                    {wallpaper?.colors.map((color, i) => {
+                      return <span key={i}>{color} </span>;
                     })}
                   </td>
-                  <td className="p-0">{wallpaper?.price}</td>
+                  <td className="p-0">
+                    {wallpaper?.price === 0 ? "Free" : wallpaper?.price}
+                  </td>
                   <DropdownMenu></DropdownMenu>
                   {/* <td className="p-0">
                     <div className="flex items-center justify-center p-0">
