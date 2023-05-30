@@ -2,7 +2,7 @@ import React from "react";
 import ChartLine from "./ChartTypes/ChartLine";
 import ChartArea from "./ChartTypes/ChartArea";
 import ChartBar from "./ChartTypes/ChartBar";
-import HomeOrders from "../Tables/DashboardTable/HomeOrders";
+import DashboardTable from "../Tables/DashboardTable/DashboardTable";
 
 const Charts = () => {
   const data = [
@@ -22,10 +22,10 @@ const Charts = () => {
   return (
     <section className="grid grid-cols-1 xl:grid-cols-2 p-4 items-center justify-around gap-4">
       <div className="bg-whiteHigh rounded-xl p-6">
-        <HomeOrders title="Recent Wallpapers Added"></HomeOrders>
+        <DashboardTable title="Recent Wallpapers Added"></DashboardTable>
       </div>
       <div className="bg-whiteHigh rounded-xl p-6">
-        <HomeOrders title="Recent RingTone Added"></HomeOrders>
+        <DashboardTable title="Recent RingTone Added"></DashboardTable>
       </div>
       <div className="bg-whiteHigh rounded-xl p-6">
         <ChartArea data={data} title="In-App Purchase"></ChartArea>

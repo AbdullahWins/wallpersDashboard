@@ -1,26 +1,26 @@
 import React, { useContext, useState } from "react";
-import { WallpaperContext } from "../../Contexts/WallpaperContext/WallpaperContext";
 import { useEffect } from "react";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import LoadingScreen from "../../Components/Shared/LoadingScreens/LoadingScreen";
-import WallpaperTable from "../../Components/Tables/WallpaperTables/WallpaperTable";
+import { RingtoneContext } from "../../Contexts/RingtoneContext/RingtoneContext";
+import RingtoneTable from "../../Components/Tables/RingtoneTable/RingtoneTable";
 
-const ApprovedWallpapers = () => {
+const ApprovedRingtones = () => {
   const {
-    wallpapers,
+    ringtones,
     isLoading,
     searchBarValue,
     setSearchBarValue,
-    setCurrentWallpaper,
-    updateManyCustomerStatus,
-  } = useContext(WallpaperContext);
+    setCurrentRingtone,
+    updateManyRingtoneStatus,
+  } = useContext(RingtoneContext);
 
   const [approved, setApproved] = useState(null);
   const [filteredApproved, setFilteredApproved] = useState(approved);
-  const [selectedWallpapers, setSelectedWallpapers] = useState([]);
+  const [selectedRingtones, setSelectedRingtones] = useState([]);
 
   const handleSelectCheckbox = (wallpaper, e) => {
-    const selectedWallpaperList = [...selectedWallpapers];
+    const selectedWallpaperList = [...selectedRingtones];
     if (e?.target?.checked) {
       selectedWallpaperList?.push(wallpaper?._id);
     } else {
@@ -29,27 +29,27 @@ const ApprovedWallpapers = () => {
         selectedWallpaperList?.splice(index, 1);
       }
     }
-    setSelectedWallpapers(selectedWallpaperList);
+    setSelectedRingtones(selectedWallpaperList);
   };
 
   useEffect(() => {
-    const approvedWallpapers = wallpapers?.filter((wallpaper) =>
-      wallpaper?.status?.includes("approved")
+    const approvedWallpapers = ringtones?.filter((ringtone) =>
+      ringtone?.status?.includes("approved")
     );
     setApproved(approvedWallpapers);
     setFilteredApproved(approvedWallpapers);
-  }, [wallpapers]);
+  }, [ringtones]);
 
-  const handleSelectAllCheckbox = (wallpapers, e) => {
-    const selectAllWallpaper = [];
+  const handleSelectAllCheckbox = (ringtones, e) => {
+    const selectAllRingtone = [];
     if (e?.target?.checked) {
-      wallpapers?.map((wallpaper) => {
-        return selectAllWallpaper?.push(wallpaper?._id);
+      ringtones?.map((ringtone) => {
+        return selectAllRingtone?.push(ringtone?._id);
       });
     } else {
-      setSelectedWallpapers([]);
+      setSelectedRingtones([]);
     }
-    setSelectedWallpapers(selectAllWallpaper);
+    setSelectedRingtones(selectAllRingtone);
   };
 
   //filter categories by search value
@@ -67,8 +67,8 @@ const ApprovedWallpapers = () => {
 
   //handle approve all
   const handleApproveAll = (category, status) => {
-    updateManyCustomerStatus(category, status);
-    setSelectedWallpapers([]);
+    updateManyRingtoneStatus(category, status);
+    setSelectedRingtones([]);
   };
 
   return (
@@ -76,25 +76,25 @@ const ApprovedWallpapers = () => {
       <SearchBar
         value={searchBarValue}
         onChange={filterWallpapersBySearch}
-        tableName="Wallpapers"
+        tableName="Ringtones"
       />
 
       <div
         className={` ${
-          selectedWallpapers?.length < 1
+          selectedRingtones?.length < 1
             ? "hidden"
             : "flex items-center justify-start gap-4"
         } p-4 bg-whiteHigh`}
       >
         <label
-          onClick={() => handleApproveAll(selectedWallpapers, "Cancelled")}
+          onClick={() => handleApproveAll(selectedRingtones, "Cancelled")}
           className="btn btn-sm border-none bg-primaryMain"
         >
           Decline Selected
         </label>
         <button
           className="btn btn-sm border-none text-blackMid hover:text-whiteHigh bg-whiteLow"
-          onClick={() => handleApproveAll(selectedWallpapers, "Approved")}
+          onClick={() => handleApproveAll(selectedRingtones, "Approved")}
         >
           Approve Selected
         </button>
@@ -102,16 +102,16 @@ const ApprovedWallpapers = () => {
       {isLoading ? (
         <LoadingScreen></LoadingScreen>
       ) : (
-        <WallpaperTable
+        <RingtoneTable
           items={filteredApproved}
-          setCurrentItem={setCurrentWallpaper}
+          setCurrentCustomer={setCurrentRingtone}
           handleSelectCheckbox={handleSelectCheckbox}
           handleSelectAllCheckbox={handleSelectAllCheckbox}
-          selectedItems={selectedWallpapers}
-        ></WallpaperTable>
+          selectedItems={selectedRingtones}
+        ></RingtoneTable>
       )}
     </div>
   );
 };
 
-export default ApprovedWallpapers;
+export default ApprovedRingtones;

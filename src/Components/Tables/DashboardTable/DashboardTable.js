@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { lense } from "../../../Assets/getImages";
 import { WallpaperContext } from "../../../Contexts/WallpaperContext/WallpaperContext";
 
-const HomeOrders = ({ title }) => {
+const DashboardTable = ({ title }) => {
   const { wallpapers, isLoading } = useContext(WallpaperContext);
   return (
     <section>
@@ -10,7 +10,7 @@ const HomeOrders = ({ title }) => {
         <section className="flex items-center justify-between mb-6">
           <p className="text-2xl text-blackMid font-bold">{title}</p>
         </section>
-        <div className="overflow-x-auto overflow-y-auto max-h-80">
+        <div className="overflow-auto max-h-80">
           {isLoading ? (
             // <OrdersLoading></OrdersLoading>
             ""
@@ -37,7 +37,9 @@ const HomeOrders = ({ title }) => {
                         <img src={lense} alt="" className="w-8 h-8" />
                       </th>
                       <td>
-                        {wallpaper?.timestamp?.toDate().toLocaleDateString()}
+                        {new Date(wallpaper?.timestamp).toLocaleDateString(
+                          "en-US"
+                        )}
                       </td>
                       <td>{wallpaper?.name}</td>
                     </tr>
@@ -52,4 +54,4 @@ const HomeOrders = ({ title }) => {
   );
 };
 
-export default HomeOrders;
+export default DashboardTable;

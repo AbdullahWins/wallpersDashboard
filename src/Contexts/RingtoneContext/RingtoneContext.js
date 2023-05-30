@@ -1,20 +1,20 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
-export const WallpaperContext = createContext();
+export const RingtoneContext = createContext();
 
-const WallpaperProvider = ({ children }) => {
+const RingtoneProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [wallpapers, setWallpapers] = useState(null);
+  const [ringtones, setRingtones] = useState(null);
   const [searchBarValue, setSearchBarValue] = useState(null);
 
-  //fetch all wallpapers on load
+  //fetch all ringtones on load
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_BASE_URL}/wallpapers`)
+      .get(`${process.env.REACT_APP_API_BASE_URL}/ringtones`)
       .then((response) => {
         // Handle the response data
-        const allWallpapers = response?.data;
-        setWallpapers(allWallpapers);
+        const allRingtones = response?.data;
+        setRingtones(allRingtones);
         // //set pending
         // const pending = allWallpapers.find(
         //   (wallpaper) => wallpaper?.status === "pending"
@@ -43,19 +43,19 @@ const WallpaperProvider = ({ children }) => {
   }, []);
 
   //exports
-  const WallpapersInfo = {
+  const RingtonesInfo = {
+    ringtones,
     isLoading,
     setIsLoading,
-    wallpapers,
-    setWallpapers,
+    setRingtones,
     searchBarValue,
     setSearchBarValue,
   };
   return (
-    <WallpaperContext.Provider value={WallpapersInfo}>
+    <RingtoneContext.Provider value={RingtonesInfo}>
       {children}
-    </WallpaperContext.Provider>
+    </RingtoneContext.Provider>
   );
 };
 
-export default WallpaperProvider;
+export default RingtoneProvider;

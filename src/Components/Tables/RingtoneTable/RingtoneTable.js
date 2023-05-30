@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 import { Pagination } from "../../Pagination/Pagination";
-import { WallpaperContext } from "../../../Contexts/WallpaperContext/WallpaperContext";
 import DropdownMenu from "../../DropdownMenu/DropdownMenu";
+import { RingtoneContext } from "../../../Contexts/RingtoneContext/RingtoneContext";
+import ReactAudioPlayer from "react-audio-player";
 
-const WallpaperTable = ({
+const RingtoneTable = ({
   items,
   handleSelectCheckbox,
   handleSelectAllCheckbox,
   selectedItems,
 }) => {
-  const { searchBarValue } = useContext(WallpaperContext);
+  const { searchBarValue } = useContext(RingtoneContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [activeButton, setActiveButton] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -26,12 +27,12 @@ const WallpaperTable = ({
     }
   }, [searchBarValue]);
 
-  const handleCheckbox = (wallpaper, e) => {
-    handleSelectCheckbox(wallpaper, e);
+  const handleCheckbox = (ringtone, e) => {
+    handleSelectCheckbox(ringtone, e);
   };
 
-  const handleAllCheckbox = (wallpapers, e) => {
-    handleSelectAllCheckbox(wallpapers, e);
+  const handleAllCheckbox = (ringtones, e) => {
+    handleSelectAllCheckbox(ringtones, e);
   };
 
   return (
@@ -54,7 +55,7 @@ const WallpaperTable = ({
                 Serial
               </th>
               <th className="bg-blueLight text-bold text-lg normal-case">
-                Preview
+                Play
               </th>
               <th className="bg-blueLight text-bold text-lg normal-case">
                 Created
@@ -80,7 +81,7 @@ const WallpaperTable = ({
             </tr>
           </thead>
           <tbody className="text-center">
-            {currentRows?.map((wallpaper, i) => {
+            {currentRows?.map((ringtone, i) => {
               return (
                 <tr key={i} className="text-center">
                   <th className="p-0">
@@ -88,29 +89,34 @@ const WallpaperTable = ({
                       type="checkbox"
                       className="checkbox checkbox-sm rounded-none"
                       name="checkbox"
-                      checked={selectedItems?.includes(wallpaper?._id)}
+                      checked={selectedItems?.includes(ringtone?._id)}
                       onChange={(e) => {
-                        handleCheckbox(wallpaper, e);
+                        handleCheckbox(ringtone, e);
                       }}
                     />
                   </th>
                   <td className="p-0">{i + 1}</td>
                   <td className="flex items-center justify-center p-3">
-                    <img className="h-8 w-8" src={wallpaper?.imageUrl} alt="" />
+                    {
+                      <ReactAudioPlayer
+                        src={ringtone?.audioUrl}
+                        controls
+                      ></ReactAudioPlayer>
+                    }
                   </td>
                   <td className="p-0">
-                    {new Date(wallpaper?.timestamp).toLocaleDateString("en-US")}
+                    {new Date(ringtone?.timestamp).toLocaleDateString("en-US")}
                   </td>
-                  <td className="p-0">{wallpaper?.name}</td>
-                  <td className="p-0">{wallpaper?.author}</td>
-                  <td className="p-0">{wallpaper?.category}</td>
+                  <td className="p-0">{ringtone?.name}</td>
+                  <td className="p-0">{ringtone?.author}</td>
+                  <td className="p-0">{ringtone?.category}</td>
                   <td className="p-0">
-                    {wallpaper?.colors.map((color, i) => {
+                    {ringtone?.colors.map((color, i) => {
                       return <span key={i}>{color} </span>;
                     })}
                   </td>
                   <td className="p-0">
-                    {wallpaper?.price === 0 ? "Free" : wallpaper?.price}
+                    {ringtone?.price === 0 ? "Free" : ringtone?.price}
                   </td>
                   <DropdownMenu></DropdownMenu>
                   {/* <td className="p-0">
@@ -173,4 +179,4 @@ const WallpaperTable = ({
   );
 };
 
-export default WallpaperTable;
+export default RingtoneTable;
