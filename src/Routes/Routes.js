@@ -8,6 +8,7 @@ import ApprovedWallpapers from "../Pages/Wallpapers/ApprovedWallpapers";
 import PendingWallpapers from "../Pages/Wallpapers/PendingWallpapers";
 import RejectedWallpapers from "../Pages/Wallpapers/RejectedWallpapers";
 import PausedWallpapers from "../Pages/Wallpapers/PausedWallpapers";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <p>404 Page</p>,
+    element: <ErrorPage></ErrorPage>,
   },
 ]);

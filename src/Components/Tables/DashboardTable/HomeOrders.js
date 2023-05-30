@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { lense } from "../../Assets/getImages";
-import { WallpaperContext } from "../../Contexts/WallpaperContext/WallpaperContext";
+import { lense } from "../../../Assets/getImages";
+import { WallpaperContext } from "../../../Contexts/WallpaperContext/WallpaperContext";
 
 const HomeOrders = ({ title }) => {
   const { wallpapers, isLoading } = useContext(WallpaperContext);
