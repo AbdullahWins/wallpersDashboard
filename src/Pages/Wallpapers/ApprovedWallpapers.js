@@ -1,17 +1,18 @@
 import React, { useContext, useState } from "react";
-import OrdersLoading from "../../Components/Shared/LoadingScreens/OrdersLoading";
-import TableApprovedWallpapers from "../../Components/Tables/WallpaperTables/TableApprovedWallpapers";
 import { WallpaperContext } from "../../Contexts/WallpaperContext/WallpaperContext";
 import { useEffect } from "react";
+import SearchBar from "../../Components/SearchBar/SearchBar";
+import LoadingScreen from "../../Components/Shared/LoadingScreens/LoadingScreen";
+import WallpaperTable from "../../Components/Tables/WallpaperTables/WallpaperTable";
 
 const ApprovedWallpapers = () => {
   const {
     wallpapers,
     isLoading,
     searchBarValue,
+    setSearchBarValue,
     setCurrentCustomer,
     updateManyCustomerStatus,
-    setSearchBarValue,
   } = useContext(WallpaperContext);
 
   const [approved, setApproved] = useState(null);
@@ -32,7 +33,7 @@ const ApprovedWallpapers = () => {
   };
 
   useEffect(() => {
-    const approvedWallpapers = wallpapers.filter((wallpaper) =>
+    const approvedWallpapers = wallpapers?.filter((wallpaper) =>
       wallpaper?.status?.includes("approved")
     );
     setApproved(approvedWallpapers);
@@ -51,20 +52,20 @@ const ApprovedWallpapers = () => {
     setSelectedWallpapers(selectAllCategory);
   };
 
-  console.log(selectedWallpapers);
-
   //filter categories by search value
   const filterWallpapersBySearch = (e) => {
     const searchValue = e.target.value;
+    console.log(searchValue);
     const filterWallpapers = approved?.filter((wallpaper) =>
       searchBarValue !== null
-        ? wallpaper?.title?.toLowerCase().includes(searchValue?.toLowerCase())
+        ? wallpaper?.name?.toLowerCase().includes(searchValue?.toLowerCase())
         : true
     );
     setFilteredApproved(filterWallpapers);
     setSearchBarValue(searchValue);
   };
 
+  //handle approve all
   const handleApproveAll = (category, status) => {
     updateManyCustomerStatus(category, status);
     setSelectedWallpapers([]);
@@ -72,23 +73,11 @@ const ApprovedWallpapers = () => {
 
   return (
     <div className="overflow-auto w-full pt-6 pr-6">
-      <div className="flex items-center justify-between p-3 bg-primaryMainDarkest text-whiteHigh rounded-t-lg">
-        <section className="flex items-center gap-4">
-          <div>
-            <p className="font-bold text-2xl">Categories</p>
-          </div>
-        </section>
-        <section className="flex items-center gap-4 w-2/5">
-          <input
-            defaultValue={searchBarValue}
-            onChange={filterWallpapersBySearch}
-            className="p-3 w-full input input-sm text-blackMid rounded-md border-none focus:outline-none focus:bg-whiteLow"
-            type="text"
-            name="searchInput"
-            placeholder="search"
-          />
-        </section>
-      </div>
+      <SearchBar
+        value={searchBarValue}
+        onChange={filterWallpapersBySearch}
+        tableName="Wallpapers"
+      />
 
       <div
         className={` ${
@@ -111,15 +100,15 @@ const ApprovedWallpapers = () => {
         </button>
       </div>
       {isLoading ? (
-        <OrdersLoading></OrdersLoading>
+        <LoadingScreen></LoadingScreen>
       ) : (
-        <TableApprovedWallpapers
+        <WallpaperTable
           items={filteredApproved}
           setCurrentCustomer={setCurrentCustomer}
           handleSelectCheckbox={handleSelectCheckbox}
           handleSelectAllCheckbox={handleSelectAllCheckbox}
           selectedItems={selectedWallpapers}
-        ></TableApprovedWallpapers>
+        ></WallpaperTable>
       )}
     </div>
   );

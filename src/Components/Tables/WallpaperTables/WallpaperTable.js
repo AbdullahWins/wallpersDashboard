@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import EmptyScreen from "../../Shared/EmptyScreens/EmptyScreen";
 import { Pagination } from "../../Pagination/Pagination";
 import { WallpaperContext } from "../../../Contexts/WallpaperContext/WallpaperContext";
+import DropdownMenu from "../../DropdownMenu/DropdownMenu";
 
-const TableApprovedWallpapers = ({
+const WallpaperTable = ({
   items,
   handleSelectCheckbox,
   handleSelectAllCheckbox,
@@ -26,12 +26,12 @@ const TableApprovedWallpapers = ({
     }
   }, [searchBarValue]);
 
-  const handleCheckbox = (category, e) => {
-    handleSelectCheckbox(category, e);
+  const handleCheckbox = (wallpaper, e) => {
+    handleSelectCheckbox(wallpaper, e);
   };
 
-  const handleAllCheckbox = (categories, e) => {
-    handleSelectAllCheckbox(categories, e);
+  const handleAllCheckbox = (wallpapers, e) => {
+    handleSelectAllCheckbox(wallpapers, e);
   };
 
   return (
@@ -94,23 +94,24 @@ const TableApprovedWallpapers = ({
                       }}
                     />
                   </th>
-                  <td className="p-0">{wallpaper?.serial}</td>
+                  <td className="p-0">{i + 1}</td>
                   <td className="flex items-center justify-center p-3">
-                    <img
-                      className="h-8 w-8"
-                      src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQwYiUxFJAkEM7TGJebRc6M-Uw31sIZfkeaeE4k61DDrSWEqLeyvCbDKBPWv9WeLp1LIJOCey-W1rafIQk"
-                      alt=""
-                    />
-                    {/* <img src={wallpaper?.url} alt="" /> */}
+                    <img className="h-8 w-8" src={wallpaper?.imageUrl} alt="" />
                   </td>
-                  <td className="p-0">{wallpaper?.creation_date}</td>
-                  <td className="p-0">{wallpaper?.title}</td>
+                  <td className="p-0">
+                    {new Date(wallpaper?.timestamp).toLocaleDateString("en-US")}
+                  </td>
+                  <td className="p-0">{wallpaper?.name}</td>
                   <td className="p-0">{wallpaper?.author}</td>
                   <td className="p-0">{wallpaper?.category}</td>
-                  <td className="p-0">{wallpaper?.color}</td>
-                  <td className="p-0">{wallpaper?.price}</td>
-
                   <td className="p-0">
+                    {wallpaper?.colors.map((color) => {
+                      return <span>{color} </span>;
+                    })}
+                  </td>
+                  <td className="p-0">{wallpaper?.price}</td>
+                  <DropdownMenu></DropdownMenu>
+                  {/* <td className="p-0">
                     <div className="flex items-center justify-center p-0">
                       <Link
                         to={{
@@ -141,7 +142,7 @@ const TableApprovedWallpapers = ({
                         </label>
                       </button>
                     </div>
-                  </td>
+                  </td> */}
                 </tr>
               );
             })}
@@ -170,4 +171,4 @@ const TableApprovedWallpapers = ({
   );
 };
 
-export default TableApprovedWallpapers;
+export default WallpaperTable;

@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
-// import OrdersLoading from "../Shared/LoadingScreens/OrdersLoading";
-import { lense } from "../../Assets/getImages";
+import { lense } from "../../../Assets/getImages";
+import { WallpaperContext } from "../../../Contexts/WallpaperContext/WallpaperContext";
 
 const HomeOrders = ({ title }) => {
-  const { orders, isLoading } = useContext(OrderContext);
+  const { wallpapers, isLoading } = useContext(WallpaperContext);
   return (
     <section>
       <div className="flex flex-col h-96">
@@ -31,14 +30,16 @@ const HomeOrders = ({ title }) => {
                 </tr>
               </thead>
               <tbody>
-                {orders?.map((order, i) => {
+                {wallpapers?.map((wallpaper, i) => {
                   return (
                     <tr key={i}>
                       <th>
                         <img src={lense} alt="" className="w-8 h-8" />
                       </th>
-                      <td>{order?.timestamp?.toDate().toLocaleDateString()}</td>
-                      <td>{order?.sender_name}</td>
+                      <td>
+                        {wallpaper?.timestamp?.toDate().toLocaleDateString()}
+                      </td>
+                      <td>{wallpaper?.name}</td>
                     </tr>
                   );
                 })}

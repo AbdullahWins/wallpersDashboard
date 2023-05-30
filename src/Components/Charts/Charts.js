@@ -2,7 +2,7 @@ import React from "react";
 import ChartLine from "./ChartTypes/ChartLine";
 import ChartArea from "./ChartTypes/ChartArea";
 import ChartBar from "./ChartTypes/ChartBar";
-import HomeOrders from "../Tables/HomeOrders";
+import HomeOrders from "../Tables/DashboardTable/HomeOrders";
 
 const Charts = () => {
   const data = [

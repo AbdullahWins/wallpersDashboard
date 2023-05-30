@@ -1,36 +1,32 @@
 import { useState } from "react";
 import React, { useContext } from "react";
-import { OrderContext } from "../../Contexts/OrdersContext/OrdersProvider";
-import { CustomerContext } from "../../Contexts/CustomerContext/CustomerProvider";
-import { DeliveryContext } from "../../Contexts/DeliveryContext/DeliveryProvider";
 import Charts from "../../Components/Charts/Charts";
 import HomeTopCard from "../../Components/Cards/HomeTopCard";
+import { WallpaperContext } from "../../Contexts/WallpaperContext/WallpaperContext";
 
 const Home = () => {
   const [userType] = useState("Admin");
 
-  const { orders, deliveredOrderCount } = useContext(OrderContext);
-  const { riders } = useContext(DeliveryContext);
-  const { customers } = useContext(CustomerContext);
+  const { wallpapers } = useContext(WallpaperContext);
   const data = [
     {
       title: "Total Lense Added",
-      number: orders?.length,
+      number: wallpapers?.length,
       color: "bg-infoColor",
     },
     {
       title: "Total User",
-      number: deliveredOrderCount,
+      number: wallpapers?.length,
       color: "bg-secondaryMainLight",
     },
     {
       title: "Total Artist",
-      number: customers?.length,
+      number: wallpapers?.length,
       color: "bg-primaryMainLight",
     },
     {
       title: "Total Revenue",
-      number: riders?.length,
+      number: `$${wallpapers?.length}`,
       color: "bg-successColor",
     },
   ];
