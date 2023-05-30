@@ -94,20 +94,21 @@ const WallpaperTable = ({
                       }}
                     />
                   </th>
-                  <td className="p-0">{wallpaper?.serial}</td>
+                  <td className="p-0">{i + 1}</td>
                   <td className="flex items-center justify-center p-3">
-                    <img
-                      className="h-8 w-8"
-                      src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQwYiUxFJAkEM7TGJebRc6M-Uw31sIZfkeaeE4k61DDrSWEqLeyvCbDKBPWv9WeLp1LIJOCey-W1rafIQk"
-                      alt=""
-                    />
-                    {/* <img src={wallpaper?.url} alt="" /> */}
+                    <img className="h-8 w-8" src={wallpaper?.imageUrl} alt="" />
                   </td>
-                  <td className="p-0">{wallpaper?.creation_date}</td>
-                  <td className="p-0">{wallpaper?.title}</td>
+                  <td className="p-0">
+                    {new Date(wallpaper?.timestamp).toLocaleDateString("en-US")}
+                  </td>
+                  <td className="p-0">{wallpaper?.name}</td>
                   <td className="p-0">{wallpaper?.author}</td>
                   <td className="p-0">{wallpaper?.category}</td>
-                  <td className="p-0">{wallpaper?.color}</td>
+                  <td className="p-0">
+                    {wallpaper?.colors.map((color) => {
+                      return <span>{color} </span>;
+                    })}
+                  </td>
                   <td className="p-0">{wallpaper?.price}</td>
                   <DropdownMenu></DropdownMenu>
                   {/* <td className="p-0">
