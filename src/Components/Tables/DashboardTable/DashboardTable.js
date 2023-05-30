@@ -10,7 +10,7 @@ const DashboardTable = ({ title }) => {
         <section className="flex items-center justify-between mb-6">
           <p className="text-2xl text-blackMid font-bold">{title}</p>
         </section>
-        <div className="overflow-x-auto overflow-y-auto max-h-80">
+        <div className="overflow-auto max-h-80">
           {isLoading ? (
             // <OrdersLoading></OrdersLoading>
             ""
