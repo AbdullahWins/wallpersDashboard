@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import Charts from "../../Components/Charts/Charts";
 import HomeTopCard from "../../Components/Cards/HomeTopCard";
 import { WallpaperContext } from "../../Contexts/WallpaperContext/WallpaperContext";
+import RingtoneUploader from "../../Components/RingtoneUploader/RingtoneUploader";
 
 const Dashboard = () => {
   const [userType] = useState("Admin");
@@ -42,6 +43,8 @@ const Dashboard = () => {
             ))}
           </section>
           <Charts></Charts>
+          {/* temporary for testing only */}
+          <RingtoneUploader></RingtoneUploader>
         </div>
       )}
     </div>
