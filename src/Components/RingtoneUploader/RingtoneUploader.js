@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const RingtoneUploader = () => {
   const [file, setFile] = useState(null);
-  const [data, setData] = useState({
+  const [data] = useState({
     uId: "1",
     userID: "12345",
     platform: "platform A",
@@ -55,8 +55,6 @@ const RingtoneUploader = () => {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("data", JSON.stringify(data));
-      console.log(formData);
-
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/ringtones/add`,
         {
