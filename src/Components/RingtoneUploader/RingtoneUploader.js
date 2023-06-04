@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const RingtoneUploader = () => {
   const [file, setFile] = useState(null);
-  const [data] = useState({
+  const [data, setData] = useState({
     uId: "1",
     userID: "12345",
     platform: "platform A",
@@ -37,15 +37,16 @@ const RingtoneUploader = () => {
     setFile(selectedFile);
   };
 
-  // const handleDataChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setData((prevData) => ({
-  //     ...prevData,
-  //     [name]: value,
-  //   }));
-  // };
+  const handleDataChange = (event) => {
+    const { name, value } = event.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async () => {
+    console.log("submitting");
     try {
       if (!file) {
         setError("Please select a file");
@@ -84,13 +85,13 @@ const RingtoneUploader = () => {
         type="text"
         name="name"
         value={data.name}
-        // onChange={handleDataChange}
+        onChange={handleDataChange}
       />
       <input
         type="text"
         name="name2"
         value={data.name2}
-        // onChange={handleDataChange}
+        onChange={handleDataChange}
       />
       <input
         type="text"
