@@ -4,6 +4,7 @@ import Charts from "../../Components/Charts/Charts";
 import HomeTopCard from "../../Components/Cards/HomeTopCard";
 import { WallpaperContext } from "../../Contexts/WallpaperContext/WallpaperContext";
 import RingtoneUploader from "../../Components/RingtoneUploader/RingtoneUploader";
+import ChatComponent from "../../Components/ChatComponent";
 
 const Dashboard = () => {
   const [userType] = useState("Admin");
@@ -45,6 +46,7 @@ const Dashboard = () => {
           <Charts></Charts>
           {/* temporary for testing only */}
           <RingtoneUploader></RingtoneUploader>
+          <ChatComponent></ChatComponent>
         </div>
       )}
     </div>
