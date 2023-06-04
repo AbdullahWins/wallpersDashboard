@@ -57,7 +57,7 @@ const RingtoneUploader = () => {
       formData.append("file", file);
       formData.append("data", JSON.stringify(data));
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/categories/add/wallpaper`,
+        `${process.env.REACT_APP_API_BASE_URL}/banners/add`,
         {
           method: "POST",
           body: formData,
