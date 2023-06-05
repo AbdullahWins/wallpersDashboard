@@ -12,7 +12,6 @@ const DashboardTable = ({ title }) => {
         </section>
         <div className="overflow-auto max-h-80">
           {isLoading ? (
-            // <OrdersLoading></OrdersLoading>
             ""
           ) : (
             <table className="table table-zebra w-full">

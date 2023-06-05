@@ -9,7 +9,6 @@ import {
   signOut,
 } from "firebase/auth";
 import { firebaseApp } from "../../Firebase/firebase.config";
-// import { doc, getDoc } from "firebase/firestore";
 
 export const AuthContext = createContext();
 const auth = getAuth(firebaseApp);
@@ -54,35 +53,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-
-      // // fetch user data from backend
-      // const fetchUserFromDb = async (loggedInUser) => {
-      //   setLoading(true);
-      //   if (loggedInUser) {
-      //     try {
-      //       const ref = doc(
-      //         firebaseFirestore,
-      //         "usersCollection",
-      //         loggedInUser?.uid
-      //       );
-      //       const docSnap = await getDoc(ref);
-      //       if (docSnap.exists()) {
-      //         const newUser = docSnap.data();
-      //         setUserType(newUser?.user_type);
-      //         setDbUser(newUser);
-      //       }
-      //       //bypassing user
-      //       else {
-      //         setUserType("Admin");
-      //         setDbUser(user);
-      //         console.log("No such user!");
-      //       }
-      //     } catch (error) {
-      //       console.error("Error fetching user!", error);
-      //     }
-      //   }
-      // };
-      // fetchUserFromDb(currentUser);
       setLoading(false);
     });
 

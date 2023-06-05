@@ -5,7 +5,7 @@ export const WallpaperContext = createContext();
 const WallpaperProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [wallpapers, setWallpapers] = useState(null);
-  const [searchBarValue, setSearchBarValue] = useState(null);
+  const [searchBarValue, setSearchBarValue] = useState("");
 
   //fetch all wallpapers on load
   useEffect(() => {
@@ -15,26 +15,6 @@ const WallpaperProvider = ({ children }) => {
         // Handle the response data
         const allWallpapers = response?.data;
         setWallpapers(allWallpapers);
-        // //set pending
-        // const pending = allWallpapers.find(
-        //   (wallpaper) => wallpaper?.status === "pending"
-        // );
-        // setPendingWallpapers(pending);
-        // //set approved
-        // const approve = allWallpapers.find(
-        //   (wallpaper) => wallpaper?.status === "approved"
-        // );
-        // setApprovedWallpapers(approve);
-        // //set rejected
-        // const rejected = allWallpapers.find(
-        //   (wallpaper) => wallpaper?.status === "rejected"
-        // );
-        // setRejectedWallpapers(rejected);
-        // //set paused
-        // const paused = allWallpapers.find(
-        //   (wallpaper) => wallpaper?.status === "paused"
-        // );
-        // setPausedWallpapers(paused);
       })
       .catch((error) => {
         // Handle any errors

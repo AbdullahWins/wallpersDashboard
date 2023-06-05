@@ -113,38 +113,6 @@ const WallpaperTable = ({
                     {wallpaper?.price === 0 ? "Free" : wallpaper?.price}
                   </td>
                   <DropdownMenu></DropdownMenu>
-                  {/* <td className="p-0">
-                    <div className="flex items-center justify-center p-0">
-                      <Link
-                        to={{
-                          pathname: `/wallpaperEdit/${wallpaper?.id}`,
-                          wallpaper: wallpaper,
-                        }}
-                      >
-                        <label
-                          htmlFor="pausePopup"
-                          className="btn rounded-full bg-whiteHigh text-alertColor border-none hover:bg-whiteHigh"
-                        >
-                          <span className="material-symbols-outlined">
-                            border_color
-                          </span>
-                        </label>
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={() => console.log("delete")}
-                      >
-                        <label
-                          htmlFor="deletePopup"
-                          className="btn rounded-full p-3 bg-whiteHigh text-errorColor border-none hover:bg-whiteHigh"
-                        >
-                          <span className="material-symbols-outlined">
-                            delete
-                          </span>
-                        </label>
-                      </button>
-                    </div>
-                  </td> */}
                 </tr>
               );
             })}
@@ -164,11 +132,6 @@ const WallpaperTable = ({
           totalRows={items?.length}
         ></Pagination>
       </div>
-      {/* <ConfirmationModal actionName="delete" />
-      <CategoriesConfirmationBlockPopup
-        currentCustomer={currentCustomer}
-        clickHandlerForModals={clickHandlerForModals}
-      ></CategoriesConfirmationBlockPopup> */}
     </div>
   );
 };
